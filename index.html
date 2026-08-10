@@ -1,0 +1,52 @@
+
+<!DOCTYPE html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://bruconvites.github.io/ana-livia/">
+<meta property="og:title" content="Convite Especial • Ana Lívia 1 Aninho">
+<meta property="og:description" content="Toque para abrir o convite">
+<meta property="og:image" content="https://bruconvites.github.io/ana-livia/capa.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Convite Especial • Ana Lívia 1 Aninho">
+<meta name="twitter:description" content="Toque para abrir o convite">
+<meta name="twitter:image" content="https://bruconvites.github.io/ana-livia/capa.jpg">
+
+<style>
+html,body{margin:0;height:100%;overflow:hidden;background:#000;font-family:Arial}
+.screen{display:none;position:fixed;inset:0}.active{display:block}
+img,video{width:100%;height:100%;object-fit:contain}
+.overlay{position:absolute;inset:0}.area{position:absolute}
+#env{left:18%;top:38%;width:64%;height:45%}
+#pres{left:5%;top:79%;width:28%;height:20%}
+#loc{left:36%;top:79%;width:28%;height:20%}
+#gift{left:67%;top:79%;width:28%;height:20%}
+#giftcopy{left:18%;top:72%;width:64%;height:12%}
+#pixcopy{left:0;top:0;width:100%;height:100%}
+.btn{position:absolute;background:linear-gradient(#ffe46f,#e5b521);border:2px solid #b8860b;border-radius:14px;padding:12px 18px;color:#000;font-weight:bold;box-shadow:0 4px 8px rgba(0,0,0,.35);z-index:5}
+#skip{right:18px;bottom:18px}
+#backGift{left:18px;top:18px}
+#backPix{left:18px;top:18px}
+#toast{display:none;position:absolute;left:50%;bottom:90px;transform:translateX(-50%);background:#222;color:#fff;padding:10px 18px;border-radius:12px;z-index:6}
+.bee{position:fixed;font-size:28px;animation:f 1s forwards}@keyframes f{to{transform:translate(var(--x),var(--y));opacity:0}}
+</style></head><body>
+<div id=s1 class="screen active"><img src="primeira.jpg"><div class=overlay><div id=env class=area></div></div></div>
+<div id=s2 class=screen><video id=v src="video.mp4" playsinline></video><button id=skip class=btn>Clique aqui para avançar</button></div>
+<div id=s3 class=screen><img src="interativo.jpg"><div class=overlay><div id=pres class=area></div><div id=loc class=area></div><div id=gift class=area></div></div></div>
+<div id=s4 class=screen><img src="presentes.jpg"><div class=overlay><div id=giftcopy class=area></div></div><button id=backGift class=btn>Clique aqui para voltar ao convite</button></div>
+<div id=s5 class=screen><img src="pix.jpg"><div id=pixcopy class=overlay></div><button id=backPix class=btn>Volte para o convite</button><div id=toast>✅ Chave Pix copiada!</div></div>
+<script>
+const $=i=>document.getElementById(i),ids=['s1','s2','s3','s4','s5'];
+function show(id){ids.forEach(x=>$(x).classList.remove('active'));$(id).classList.add('active')}
+function bees(cb){for(let i=0;i<3;i++){let b=document.createElement('div');b.className='bee';b.textContent='🐝';b.style.left=innerWidth/2+'px';b.style.top=innerHeight-140+'px';b.style.setProperty('--x',(Math.random()*260-130)+'px');b.style.setProperty('--y',(-220-Math.random()*120)+'px');document.body.appendChild(b);setTimeout(()=>b.remove(),1000)}setTimeout(cb,600)}
+$('env').onclick=()=>{show('s2');$('v').currentTime=0;$('v').play();}
+$('skip').onclick=()=>bees(()=>show('s3'));
+$('v').onended=()=>show('s3');
+$('pres').onclick=()=>bees(()=>open('https://wa.link/c8tsyu','_blank'));
+$('loc').onclick=()=>bees(()=>open('https://maps.app.goo.gl/MAx8PWULh4shjfrT8?g_st=awb','_blank'));
+$('gift').onclick=()=>bees(()=>show('s4'));
+$('backGift').onclick=()=>bees(()=>show('s3'));
+$('giftcopy').onclick=()=>bees(()=>show('s5'));
+$('backPix').onclick=(e)=>{e.stopPropagation();bees(()=>show('s3'));};
+$('pixcopy').onclick=async()=>{try{await navigator.clipboard.writeText('88993226134');}catch(e){};$('toast').style.display='block';setTimeout(()=>$('toast').style.display='none',2000);}
+</script></body></html>
